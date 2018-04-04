@@ -1,0 +1,73 @@
+prototype(Sitegeist.GoldenGate.Neos.PluginExample:Component.TeaserList) < prototype(PackageFactory.AtomicFusion:Component) {
+
+    @styleguide {
+        props {
+            items = Neos.Fusion:RawArray {
+                1 = Neos.Fusion:RawArray {
+                    title = 'Erstes Produkt'
+                    description = 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.'
+                    imageUri = 'https://dummyimage.com/400x300/ddd/ddd'
+
+                    priceValue = '111,56'
+                    priceCurrency = '€'
+
+                    uri = 'http://www.example.com'
+                }
+                2 = Neos.Fusion:RawArray {
+                    title = 'Ein zweites Produkt'
+                    description = 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.'
+                    imageUri = 'https://dummyimage.com/400x300/ddd/ddd'
+
+                    priceValue = '222,56'
+                    priceCurrency = '€'
+
+                    uri = 'http://www.example.com'
+                }
+                3 = Neos.Fusion:RawArray {
+                    title = 'Ein drittes Produkt'
+                    description = 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.'
+                    imageUri = 'https://dummyimage.com/400x300/ddd/ddd'
+
+                    priceValue = '333,56'
+                    priceCurrency = '€'
+
+                    uri = 'http://www.example.com'
+                }
+                4 = Neos.Fusion:RawArray {
+                    title = 'Ein viertes Produkt'
+                    description = 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.'
+                    imageUri = 'https://dummyimage.com/400x300/ddd/ddd'
+
+                    priceValue = '444,56'
+                    priceCurrency = '€'
+
+                    uri = 'http://www.example.com'
+                }
+            }
+        }
+    }
+
+    @propTypes {
+        items = ${PropTypes.arrayOf(PropTypes.shape( {title: PropTypes.string, description: PropTypes.string, imageUri: PropTypes.string, priceValue: PropTypes.string, priceCurrency: PropTypes.string, uri: PropTypes.string} ))}
+    }
+
+    items = null
+
+    renderer = afx`
+        <div class="teaserList">
+            <Neos.Fusion:Collection collection={props.items} @children="itemRenderer" itemName="teaser">
+                <Neos.Fusion:Augmenter class="teaserList__item">
+                    <Sitegeist.GoldenGate.Neos.PluginExample:Component.Teaser
+                        title={teaser.title}
+                        description={teaser.description}
+                        imageUri={teaser.imageUri}
+                        priceValue={teaser.priceValue}
+                        priceCurrency={teaser.priceCurrency}
+                        uri={teaser.uri}
+                        isLarge={false}
+                    />
+                </Neos.Fusion:Augmenter>
+            </Neos.Fusion:Collection>
+        </div>
+    `
+}

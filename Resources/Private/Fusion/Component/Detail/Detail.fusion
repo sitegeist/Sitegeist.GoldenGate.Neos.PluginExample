@@ -1,0 +1,33 @@
+prototype(Sitegeist.GoldenGate.Neos.PluginExample:Component.Detail) < prototype(PackageFactory.AtomicFusion:Component) {
+
+    @styleguide {
+        props {
+            title = 'Ein Produkt'
+            description = 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.'
+            imageUri = 'http://lorempixel.com/400/200/cats/'
+
+            priceValue = '124,56'
+            priceCurrency = '€'
+
+            uri = 'http://www.example.com'
+        }
+    }
+
+    title = ''
+    description = ''
+    imageUri = null
+    priceValue = null
+    priceCurrency = ''
+    uri = null
+
+    renderer = afx`
+            <h2>{props.title}</h2>
+            <p>{props.description}</p>
+            <img src={props.imageUri} alt={props.title} @if.has={props.imageUri} />
+            <p @if.has={props.priceValue}>ab {props.priceValue} {props.priceCurrency}</p>
+            <p @if.has={props.uri}>
+                <a href={props.uri} >mehr</a>
+            </p>
+        </div>
+    `
+}

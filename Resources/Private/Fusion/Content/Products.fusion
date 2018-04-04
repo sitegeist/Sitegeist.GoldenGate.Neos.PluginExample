@@ -1,0 +1,36 @@
+prototype(Sitegeist.GoldenGate.Neos.PluginExample:Content.Products) < prototype(Neos.Neos:ContentComponent) {
+
+    @context {
+        shop = ${q(node).property('goldengate__shop')}
+        products = Sitegeist.GoldenGate.Neos.Mixins:Shopware.Products {
+            node = ${node}
+        }
+    }
+
+    renderer = Sitegeist.GoldenGate.Neos.PluginExample:Component.TeaserList {
+        items = Neos.Fusion:RawCollection {
+            collection = ${products}
+            itemName = 'product'
+            itemRenderer = Neos.Fusion:RawArray {
+                title = ${product.name}
+                description = ${String.stripTags(String.cropAtWord(product.description, 60, '...'))}
+                imageUri = ${product.mainDetail.mainImage.imageSizes[1].url}
+                priceValue = ${product.mainDetail.mainPrice.value}
+                priceCurrency = ${product.mainDetail.mainPrice.currency}
+                uri = ${product.mainDetail.uri}
+            }
+        }
+    }
+
+    @cache {
+        mode = 'cached'
+        maximumLifetime = '86400'
+        entryIdentifier {
+            node = ${node}
+        }
+        entryTags {
+            1 = ${Neos.Caching.nodeTag(node)}
+            2 = ${Shopware.Caching.productTags(shop, products)}
+        }
+    }
+}

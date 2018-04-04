@@ -1,0 +1,17 @@
+include: Component/**/*.fusion
+include: Content/**/*.fusion
+
+prototype(Neos.Neos:Page) {
+    head {
+        stylesheets {
+            goldengate = Neos.Fusion:Tag {
+                tagName = 'link'
+                attributes.rel = 'stylesheet'
+                attributes.href = Neos.Fusion:ResourceUri {
+                    path = ${'resource://Sitegeist.GoldenGate.Neos.PluginExample/Public/Styles/Plugin.css'}
+                }
+                attributes.media = 'all'
+            }
+        }
+    }
+}

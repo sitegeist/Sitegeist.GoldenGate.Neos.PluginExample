@@ -1,0 +1,23 @@
+prototype(Sitegeist.GoldenGate.Neos.PluginExample:Component.PriceTag) < prototype(PackageFactory.AtomicFusion:Component) {
+    @styleguide {
+        props {
+            value = '123,4'
+            currency = '€'
+            prefix = 'ab'
+        }
+    }
+
+    value = ''
+    currency = ''
+    prefix = ''
+
+    renderer = afx`
+        <div class="priceTag">
+            <span class="priceTag__prefix">{props.prefix}</span>
+            {' '}
+            <span class="priceTag__value">{props.value}</span>
+            {' '}
+            <span class="priceTag__currency">{props.currency}</span>
+        </div>
+    `
+}

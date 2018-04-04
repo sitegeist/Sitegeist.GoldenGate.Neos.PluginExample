@@ -1,0 +1,62 @@
+prototype(Sitegeist.GoldenGate.Neos.PluginExample:Component.Teaser) < prototype(PackageFactory.AtomicFusion:Component) {
+
+    @styleguide {
+        props {
+            title = 'Ein Produkt'
+            description = 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.'
+            imageUri = 'https://dummyimage.com/400x300/ddd/fff'
+
+            priceValue = '124,56'
+            priceCurrency = '€'
+
+            uri = 'http://www.example.com'
+
+            isLarge = true
+        }
+
+        propSets {
+            small {
+                isLarge = false
+            }
+        }
+    }
+
+    @propTypes {
+        title = ${PropTypes.string}
+        description = ${PropTypes.string}
+        imageUri = ${PropTypes.string}
+        priceValue = ${PropTypes.string}
+        priceCurrency = ${PropTypes.string}
+        uri = ${PropTypes.string}
+        isLarge = ${PropTypes.boolean}
+    }
+
+    title = ''
+    description = ''
+    imageUri = null
+    priceValue = null
+    priceCurrency = ''
+    uri = null
+    isLarge = false
+
+    renderer = afx`
+        <div
+            class={props.isLarge ? 'teaser teaser--large' : 'teaser'}
+        >
+            <img class="teaser__background" src={props.imageUri} alt={props.title} @if.has={props.imageUri} />
+
+            <Sitegeist.GoldenGate.Neos.PluginExample:Component.PriceTag
+                @if.has={props.priceValue}
+                prefix="ab"
+                value={props.priceValue}
+                currency={props.priceCurrency}
+                />
+
+            <div class="teaser__content">
+                <h4 class="teaser__title">{props.title}</h4>
+                <p class="teaser__description">{props.description}</p>
+                <a @if.has={props.uri} class="teaser__callToAction" href={props.uri} >mehr &raquo;</a>
+            </div>
+        </div>
+    `
+}

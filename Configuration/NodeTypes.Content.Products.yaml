@@ -1,0 +1,11 @@
+Sitegeist.GoldenGate.Neos.PluginExample:Content.Products:
+  ui:
+    label: 'Shopware - Product List'
+    icon: 'icon-tags'
+    inlineEditable: false
+  superTypes:
+    Neos.Neos:Content: TRUE
+    Sitegeist.GoldenGate.Neos.Mixins:Shopware.Products: TRUE
+  options:
+    fusion:
+      prototypeGenerator: ~
