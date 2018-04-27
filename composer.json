@@ -6,7 +6,7 @@
     "require": {
         "neos/flow": "*",
         "packagefactory/atomicfusion": "~2.4.0",
-        "neos/fusion-afx": "~1.0.0",
+        "neos/fusion-afx": "^1.0 || dev-master",
         "sitegeist/goldengate-neos-api": "*",
         "sitegeist/goldengate-neos-mixins": "*"
     },
